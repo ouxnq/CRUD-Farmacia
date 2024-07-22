@@ -23,15 +23,25 @@ public class Produto {
 	@Size(min = 3, max = 100, message = "O nome deve ter no mínimo 3 e no máximo 100 caracteres!")
 	private String nome;
 
-	@NotNull
+	@NotNull(message = "O preço não pode estar vazio!")
 	private float preco;
 
-	@NotNull
+	@NotNull(message = "O estoque não pode estar vazio!")
 	private int estoque;
 
 	@ManyToOne
 	@JsonIgnoreProperties("produto")
 	private Categoria categoria;
+
+	public Produto(Long id, String nome, float preco, int estoque) {
+		this.id = id;
+		this.nome = nome;
+		this.preco = preco;
+		this.estoque = estoque;
+	}
+
+	public Produto() {
+	}
 
 	public Long getId() {
 		return id;

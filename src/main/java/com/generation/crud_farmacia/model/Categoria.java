@@ -30,10 +30,19 @@ public class Categoria {
 	@NotBlank(message = "A descrição não pode estar vazia!")
 	@Size(min = 3, max = 100, message = "A descrição da característica deve ter entre 3 e 100 caracteres!")
 	private String descricao;
-	
+
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "categoria", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties("categoria")
 	private List<Produto> produto;
+
+	public Categoria(Long id, String categoria, String descricao) {
+		this.id = id;
+		this.categoria = categoria;
+		this.descricao = descricao;
+	}
+
+	public Categoria() {
+	}
 
 	public Long getId() {
 		return id;
@@ -66,5 +75,5 @@ public class Categoria {
 	public void setProduto(List<Produto> produto) {
 		this.produto = produto;
 	}
-	
+
 }
